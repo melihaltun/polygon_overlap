@@ -2,47 +2,32 @@ clear; clc; close all;
 
 n1 = 2; n2 = 3;
 polyGroup1 = createRandomPolygons(n1);
-
 polyGroup2 = createRandomPolygons(n2);
 
-
-figure(1);
-for i = 1:n1
-    poly = polyGroup1{i};
-    x = poly(:,1);
-    y = poly(:,2);
-    x = [x;x(1)];
-    y = [y;y(1)];
-    plot(x, y, 'b-', 'LineWidth', 2, 'MarkerFaceColor', 'b', 'MarkerSize', 8)
-    if i == 1
-        hold on;
-    end
-end
-
-figure(1);
-for i = 1:n2
-    poly = polyGroup2{i};
-    x = poly(:,1);
-    y = poly(:,2);
-    x = [x;x(1)];
-    y = [y;y(1)];
-    plot(x, y, 'r-', 'LineWidth', 2, 'MarkerFaceColor', 'r', 'MarkerSize', 8)
-end
+draw_polygons(polyGroup1, 1, 'b-', 2, 'b', 8, 1);
+draw_polygons(polyGroup2, 1, 'r-', 2, 'r', 8, 1);
 
 overlaps = polygonOverlap(polyGroup1, polyGroup2);
 
+draw_polygons(overlaps, 1, 'm-', 2, 'm', 8, 0);
 
 
-
-figure(1);
-for i = 1:length(overlaps)
-    poly = overlaps{i};
+function draw_polygons(polygons, figureNum, colorAndStyle, lineWidth, markerColor, markerSize, holdOn)
+%function to draw multiple polygons
+figure(figureNum);
+for i = 1:length(polygons)
+    poly = polygons{i};
     x = poly(:,1);
     y = poly(:,2);
     x = [x;x(1)];
     y = [y;y(1)];
-    plot(x, y, 'm-', 'LineWidth', 2, 'MarkerFaceColor', 'm', 'MarkerSize', 8)
+    plot(x, y, colorAndStyle, 'LineWidth', lineWidth, 'MarkerFaceColor', markerColor, 'MarkerSize', markerSize)
+    if holdOn && i == 1
+        hold on;
+    end
 end
 xlabel('x'); ylabel('y');
-
-hold off;
+if ~holdOn
+    hold off;
+end
+end

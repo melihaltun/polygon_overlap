@@ -23,22 +23,22 @@ end
 
 
 function overlap = twoPolyOverlap (polygon1, polygon2)
+% check if two polygons intersect and find the overlap
+% by checking each corner of one polygon against the other polygon
+% adding corner points inside the other polygon to the intersection
+% finally if there is overlap add points where edges of polygons intersect each other
 
 sz1 = size(polygon1,1);
 sz2 = size(polygon2,1);
-
 overlap = [];
 
 for i = 1:sz1
     x = polygon1(i,1);
     y = polygon1(i,2);
     if (ptInsidePolygon(polygon2, x, y))
-        overlap = [overlap; [x, y]];
-        
+        overlap = [overlap; [x, y]];        
     end
 end
-
-
 for i = 1:sz2
     x = polygon2(i,1);
     y = polygon2(i,2);
@@ -113,6 +113,7 @@ polygon(:,3) = atan2(polygon(:,2) - cntr_y, polygon(:,1) - cntr_x);
 polygon = sortrows(polygon,3);
 polygon = polygon(:,1:2);
 end
+
 
 function [slp, intr] = getLineEqn(x1, y1, x2, y2)
 % get slope and intercept from two points

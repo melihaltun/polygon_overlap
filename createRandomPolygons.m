@@ -1,7 +1,7 @@
 
 function polygons = createRandomPolygons(numPolygons)
 
-minDist = 4;
+%minDist = 4;  % TBD
 centerSigma = 3;
 polygons = {};
 centers = [];
@@ -11,16 +11,6 @@ for k = 1:numPolygons
     poly = [];
 
     center = [centerSigma*randn, centerSigma*randn];
-
-    while (size(centers,1) > 1)
-        for i = 1:size(centers,1) 
-            if sqrt((center(1)-centers(i,1))^2+(center(2)-centers(i,2))^2) < minDist 
-                center = [centerSigma*randn, centerSigma*randn];
-                continue;
-            end
-        end
-        break;
-    end
 
     r = 2.5;
     cornerSigma = 0.2;

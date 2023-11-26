@@ -7,5 +7,8 @@ The code compares each polygon from one group against each polygon from another 
 
 The code also includes a demo script that generates configurable number of random polygons at random locations for each group. Then the polygon overlap function is called and and the resulting overlaps are displayed along with the original polygons.
 
-![image](https://github.com/melihaltun/polygon_overlap/assets/40482921/77cc0c54-e191-471d-b9a2-84e46150ac28)
+![image](https://github.com/melihaltun/polygon_overlap/assets/40482921/02477a04-4b04-41e3-988b-49a14a5ad047)
+
+![image](https://github.com/melihaltun/polygon_overlap/assets/40482921/0bf7b684-1035-436f-8db5-7510d2a59d22)
+
 

@@ -1,16 +1,24 @@
 
 function polygons = createRandomPolygons(numPolygons)
 
-%minDist = 4;  % TBD
+minDist = 2;
 centerSigma = 3;
+max_iter = 200;
 polygons = {};
 centers = [];
 for k = 1:numPolygons
 
     numVertices = randi([3, 8]);
     poly = [];
-
-    center = [centerSigma*randn, centerSigma*randn];
+    i = 0;
+    while i < max_iter
+        center = [centerSigma*randn, centerSigma*randn];
+        if isempty(centers) || all(pdist2(center,centers) >= minDist)
+            break;
+        end
+        i = i+1;
+    end
+    centers = [centers; center];
 
     r = 2.5;
     cornerSigma = 0.2;
